@@ -38,6 +38,6 @@ class Api::V1::VersionsController < ApplicationController
   private
 
   def version_params
-    params.require(:version).permit(:date, :description, :s3_key, :song_id)
+    params.require(:version).permit(:date, :description, :s3_key, :etag, :song_id)
   end
 end

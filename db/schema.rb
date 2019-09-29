@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2019_09_22_172632) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title", null: false
+    t.string "etag", null: false
+    t.string "s3_key", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_09_22_172632) do
     t.string "date"
     t.text "description"
     t.string "s3_key"
+    t.string "etag", null: false
     t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

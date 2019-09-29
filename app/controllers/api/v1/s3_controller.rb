@@ -3,6 +3,19 @@ require 'aws-sdk-s3'
 
 class Api::V1::S3Controller < ApplicationController
 
+
+  def list_objects
+    s3 = Aws::S3::Client.new({profile: {aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'], aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']}, region: 'us-east-1'})
+    # s3.list_objects_v2(bucket: 'sandbox-v3')
+
+    resp = s3.list_objects_v2(bucket: 'sandbox-v3')
+    contents = {}
+    resp.contents.each do |obj|
+      contents[obj.key] = obj
+    end
+    render json: contents, status: 201
+  end
+
   def signed_url
     Aws.config[:s3] = {region: 'us-east-1', credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']),retry_limit: 10 }
 

@@ -18,7 +18,6 @@ class Api::V1::AlbumsController < ApplicationController
   end
 
   def show
-    puts params
     s3 = Aws::S3::Client.new({profile: {aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'], aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']}, region: 'us-east-1'})
     # s3.list_objects_v2(bucket: 'sandbox-v3')
 
@@ -40,6 +39,6 @@ class Api::V1::AlbumsController < ApplicationController
 
 
   def album_params
-    params.require(:album).permit(:title)
+    params.require(:album).permit(:title, :s3_key, :etag)
   end
 end
