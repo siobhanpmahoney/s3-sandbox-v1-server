@@ -4,7 +4,7 @@ class CreateVersions < ActiveRecord::Migration[6.0]
       t.string :date
       t.text :description
       t.string :s3_key, unique: true
-      t.string :etag, unique: true, null: false
+      t.string :etag, unique: true
       t.references :song, null: false, foreign_key: true
 
       t.timestamps
