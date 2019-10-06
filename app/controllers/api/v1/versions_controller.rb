@@ -39,7 +39,7 @@ class Api::V1::VersionsController < ApplicationController
         key: title,
       })
 
-      @version.update(etag: resp.to_h[:etag], s3_key: title)
+      @version.update(etag: resp.to_h[:etagx], s3_key: title)
     end
 
 
