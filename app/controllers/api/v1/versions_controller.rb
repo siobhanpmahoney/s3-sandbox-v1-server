@@ -30,7 +30,7 @@ class Api::V1::VersionsController < ApplicationController
 
       file = params[:file]
       bucket = 'sandbox-v3'
-      title = "album3/song3000/#{Time.now}.m4a"
+      title = "#{@version.song.album.title}/#{@version.song.title}/#{Time.now}.m4a"
 
       resp = s3.put_object({
         acl: "authenticated-read",
@@ -39,7 +39,7 @@ class Api::V1::VersionsController < ApplicationController
         key: title,
       })
 
-      @version.update(etag: resp.to_h[:etagx], s3_key: title)
+      @version.update(etag: resp.to_h[:etag], s3_key: title)
     end
 
 
@@ -53,6 +53,7 @@ class Api::V1::VersionsController < ApplicationController
 
   def show
     @version = Version.find(params[:id])
+    object.presigned_url(:get)
     render json: @version
   end
 
@@ -70,6 +71,11 @@ class Api::V1::VersionsController < ApplicationController
     @version = Version.find(params[:id])
     @version.destroy
     render json: {message: "Version deleted"}
+  end
+
+  def get_presigned_url
+
+    obj.presigned_url(:get, expires_in: 3600)
   end
 
   private
