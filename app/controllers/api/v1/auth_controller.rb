@@ -3,7 +3,6 @@ class Api::V1::AuthController < ApplicationController
   require 'securerandom'
 
   def create
-    puts params
     @user = User.find_by(username: params[:user][:username]) # returns either user instance OR nil
     if @user && @user.authenticate(user_params[:password]) #@user.#authenticate comes from BCrypt
       @token = encode_token({user_id: @user.id})

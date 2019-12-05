@@ -2,6 +2,7 @@ require 'aws-sdk-s3'  # v2: require 'aws-sdk'
 require 'json'
 
 class Api::V1::AlbumsController < ApplicationController
+    skip_before_action :authorized
 
   def index
     @albums = Album.all

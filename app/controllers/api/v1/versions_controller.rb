@@ -3,6 +3,8 @@ require 'aws-sdk-s3'
 
 class Api::V1::VersionsController < ApplicationController
   before_action :set_host_for_local_storage
+  skip_before_action :authorized, only: [:index, :show]
+
   wrap_parameters format: [:json, :xml, :url_encoded_form, :multipart_form]
 
 

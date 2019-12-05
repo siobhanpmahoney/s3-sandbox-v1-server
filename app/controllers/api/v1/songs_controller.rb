@@ -1,4 +1,5 @@
 class Api::V1::SongsController < ApplicationController
+  skip_before_action :authorized
 
   def index
     @songs = Song.all

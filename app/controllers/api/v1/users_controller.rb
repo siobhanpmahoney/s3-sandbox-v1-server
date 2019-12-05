@@ -1,8 +1,9 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create] # all routes protected EXCEPT #create
+  skip_before_action :authorized, only: [:profile, :show, :create] # all routes protected EXCEPT #create
 
   def profile
     # render json: { user: UserSerializer.new(current_user)}, status: :accepted
+    puts current_user
     render json: { user: {id: current_user.id, username: current_user.username}}, status: :accepted
   end
 
@@ -29,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: UserSerializer.new(@user), status: :ok
+    render json: {user: UserSerializer.new(@user)}, status: :ok
   end
 
 

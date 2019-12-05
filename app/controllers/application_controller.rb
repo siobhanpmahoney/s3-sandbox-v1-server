@@ -8,6 +8,7 @@ class ApplicationController < ActionController::API
 # 1. User#create: when a new user is created
 # 2. Auth#create: when a user logs in
   def encode_token(payload) # arg is data identifying user — e.g., DB id and username
+    
     JWT.encode(payload, secret,algorithm)
   end
 
@@ -16,6 +17,7 @@ class ApplicationController < ActionController::API
 
   def auth_header
     # headers: { 'Authorization': 'Bearer <token>' }
+
     request.headers['Authorization']
     # => 'Bearer <token>'
   end
@@ -33,6 +35,7 @@ class ApplicationController < ActionController::API
   def decoded_token
     if auth_header # auth_header = 'Bearer <token>'
       token = auth_header.split(' ')[1] # => '<token>'
+
       begin
         JWT.decode(token, secret, true, algorithm: 'HS256')
       rescue JWT::DecodeError
@@ -45,6 +48,8 @@ class ApplicationController < ActionController::API
   ## helper function determinging if JWT token present
   # called by User#profile
   def current_user
+    puts decoded_token
+    
     if decoded_token
       # user_id = User.find_by(id: user_id)
       User.find_by(id: decoded_token[0]["user_id"])

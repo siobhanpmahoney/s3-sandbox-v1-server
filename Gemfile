@@ -18,13 +18,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rest-client'
 gem 'jwt'
 gem 'json'
+gem 'fast_jsonapi'
+gem "webpacker"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
- gem 'active_model_serializers'
+gem 'active_model_serializers'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'faker'
