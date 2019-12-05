@@ -19,6 +19,14 @@ class Api::V1::S3Controller < ApplicationController
   def signed_url # working method for getting presigned url
     signer = Aws::S3::Presigner.new
     url = signer.presigned_url(:get_object, bucket: "sandbox-v3", key: params["key"], expires_in: 3600)
+    puts "/n"
+    puts "/n"
+    puts "/n"
+    puts "url"
+    puts url 
+        puts "/n"
+    puts "/n"
+    puts "/n"
     render json: {url: url}
 
     # puts "params"
