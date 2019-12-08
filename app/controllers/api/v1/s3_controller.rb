@@ -2,7 +2,7 @@ require 'aws-sdk-s3'
 
 
 class Api::V1::S3Controller < ApplicationController
-
+   skip_before_action :authorized
 
   def list_objects
     s3 = Aws::S3::Client.new({profile: {aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'], aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']}, region: 'us-east-1'})
