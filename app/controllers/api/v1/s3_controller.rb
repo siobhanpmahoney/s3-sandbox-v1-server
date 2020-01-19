@@ -24,7 +24,7 @@ class Api::V1::S3Controller < ApplicationController
     puts "/n"
     puts "url"
     puts url 
-        puts "/n"
+    puts "/n"
     puts "/n"
     puts "/n"
     render json: {url: url}

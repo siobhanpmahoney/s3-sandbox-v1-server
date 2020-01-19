@@ -15,6 +15,8 @@ class Api::V1::VersionsController < ApplicationController
   end
 
   def create
+
+    
     
     @version = Version.new(song_id: params[:song_id], date: params[:date], description: params[:description])
     puts params
