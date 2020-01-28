@@ -1,5 +1,5 @@
 class AlbumSerializer < ActiveModel::Serializer
-  attributes :id, :title, :image, :s3_key, :etag
+  attributes :id, :title, :image
   has_many :songs
 
 

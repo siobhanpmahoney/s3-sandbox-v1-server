@@ -40,6 +40,6 @@ class Api::V1::AlbumsController < ApplicationController
 
 
   def album_params
-    params.require(:album).permit(:title, :s3_key, :etag)
+    params.require(:album).permit(:title, :image)
   end
 end
